@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="E_SafetyWorkPermitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'E_SafetyWorkPermit.dbo.DepartmentMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DepartmentMaster">
+          <Key>
+            <PropertyRef Name="DepartmentMasterId" />
+          </Key>
+          <Property Name="DepartmentMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar(max)" />
+          <Property Name="DepartmentCode" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'E_SafetyWorkPermit.dbo.DepartmentRegistration' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DepartmentRegistration">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Department" Type="varchar(max)" />
+          <Property Name="TokenNo" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="Role" Type="int" />
+          <Property Name="CreatedDate" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserRegister">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="VendorRegistration">
+          <Key>
+            <PropertyRef Name="VenderId" />
+          </Key>
+          <Property Name="VenderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar(max)" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="UserName" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreatedDate" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="E_SafetyWorkPermitModelStoreContainer">
+          <EntitySet Name="UserRegister" EntityType="Self.UserRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VendorRegistration" EntityType="Self.VendorRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentMaster" EntityType="Self.DepartmentMaster" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DepartmentMaster].[DepartmentMasterId] AS [DepartmentMasterId], 
+    [DepartmentMaster].[DepartmentName] AS [DepartmentName], 
+    [DepartmentMaster].[DepartmentCode] AS [DepartmentCode], 
+    [DepartmentMaster].[CreatedDate] AS [CreatedDate], 
+    [DepartmentMaster].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[DepartmentMaster] AS [DepartmentMaster]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DepartmentRegistration" EntityType="Self.DepartmentRegistration" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DepartmentRegistration].[DepartmentId] AS [DepartmentId], 
+    [DepartmentRegistration].[Name] AS [Name], 
+    [DepartmentRegistration].[Department] AS [Department], 
+    [DepartmentRegistration].[TokenNo] AS [TokenNo], 
+    [DepartmentRegistration].[Password] AS [Password], 
+    [DepartmentRegistration].[Role] AS [Role], 
+    [DepartmentRegistration].[CreatedDate] AS [CreatedDate], 
+    [DepartmentRegistration].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[DepartmentRegistration] AS [DepartmentRegistration]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="E_SafetyWorkPermitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UserRegister">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VendorRegistration">
+          <Key>
+            <PropertyRef Name="VenderId" />
+          </Key>
+          <Property Name="VenderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DepartmentMaster">
+          <Key>
+            <PropertyRef Name="DepartmentMasterId" />
+          </Key>
+          <Property Name="DepartmentMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DepartmentRegistration">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TokenNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="E_SafetyWorkPermitEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserRegisters" EntityType="Self.UserRegister" />
+          <EntitySet Name="VendorRegistrations" EntityType="Self.VendorRegistration" />
+          <EntitySet Name="DepartmentMasters" EntityType="Self.DepartmentMaster" />
+          <EntitySet Name="DepartmentRegistrations" EntityType="Self.DepartmentRegistration" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="E_SafetyWorkPermitModelStoreContainer" CdmEntityContainer="E_SafetyWorkPermitEntities">
+          <EntitySetMapping Name="UserRegisters">
+            <EntityTypeMapping TypeName="E_SafetyWorkPermitModel.UserRegister">
+              <MappingFragment StoreEntitySet="UserRegister">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorRegistrations">
+            <EntityTypeMapping TypeName="E_SafetyWorkPermitModel.VendorRegistration">
+              <MappingFragment StoreEntitySet="VendorRegistration">
+                <ScalarProperty Name="VenderId" ColumnName="VenderId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentMasters">
+            <EntityTypeMapping TypeName="E_SafetyWorkPermitModel.DepartmentMaster">
+              <MappingFragment StoreEntitySet="DepartmentMaster">
+                <ScalarProperty Name="DepartmentMasterId" ColumnName="DepartmentMasterId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentRegistrations">
+            <EntityTypeMapping TypeName="E_SafetyWorkPermitModel.DepartmentRegistration">
+              <MappingFragment StoreEntitySet="DepartmentRegistration">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="TokenNo" ColumnName="TokenNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
