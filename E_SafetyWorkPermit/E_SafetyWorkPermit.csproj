@@ -6645,6 +6645,7 @@
     <Content Include="Content\dist\img\credit\visa.png" />
     <Content Include="Content\dist\img\default-50x50.gif" />
     <Content Include="Content\dist\img\icons.png" />
+    <Content Include="Content\dist\img\MahindraJpg.jpg" />
     <Content Include="Content\dist\img\photo1.png" />
     <Content Include="Content\dist\img\photo2.png" />
     <Content Include="Content\dist\img\photo3.jpg" />
@@ -6805,24 +6806,9 @@
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Models\E_SafetyWorkPermitEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>E_SafetyWorkPermitEntities.edmx</DependentUpon>
-      <LastGenOutput>E_SafetyWorkPermitEntities.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\E_SafetyWorkPermitEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>E_SafetyWorkPermitEntities.edmx</DependentUpon>
-      <LastGenOutput>E_SafetyWorkPermitEntities.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
-    <EntityDeploy Include="Models\E_SafetyWorkPermitEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>E_SafetyWorkPermitEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\E_SafetyWorkPermitEntities.edmx.diagram">
-      <DependentUpon>E_SafetyWorkPermitEntities.edmx</DependentUpon>
-    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Registration\RegisterDepartment.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -6844,40 +6830,30 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FeedbackMaintainceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\VendorController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DepartmentMaster.cs">
-      <DependentUpon>E_SafetyWorkPermitEntities.tt</DependentUpon>
+    <Compile Include="DatabaseContext.cs" />
+    <Compile Include="Migrations\201809030723139_VendorRegistration.cs" />
+    <Compile Include="Migrations\201809030723139_VendorRegistration.Designer.cs">
+      <DependentUpon>201809030723139_VendorRegistration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\DepartmentRegistration.cs">
-      <DependentUpon>E_SafetyWorkPermitEntities.tt</DependentUpon>
+    <Compile Include="Migrations\201809030748352_DepartmentsMasters.cs" />
+    <Compile Include="Migrations\201809030748352_DepartmentsMasters.Designer.cs">
+      <DependentUpon>201809030748352_DepartmentsMasters.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\E_SafetyWorkPermitEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>E_SafetyWorkPermitEntities.Context.tt</DependentUpon>
+    <Compile Include="Migrations\201809031516278_Feedback.cs" />
+    <Compile Include="Migrations\201809031516278_Feedback.Designer.cs">
+      <DependentUpon>201809031516278_Feedback.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\E_SafetyWorkPermitEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>E_SafetyWorkPermitEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\E_SafetyWorkPermitEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>E_SafetyWorkPermitEntities.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserRegister.cs">
-      <DependentUpon>E_SafetyWorkPermitEntities.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountResponseModel.cs" />
     <Compile Include="Models\UserRegisterModel.cs" />
-    <Compile Include="Models\VendorModel.cs" />
-    <Compile Include="Models\VendorRegistration.cs">
-      <DependentUpon>E_SafetyWorkPermitEntities.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -7634,6 +7610,17 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809030723139_VendorRegistration.resx">
+      <DependentUpon>201809030723139_VendorRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809030748352_DepartmentsMasters.resx">
+      <DependentUpon>201809030748352_DepartmentsMasters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809031516278_Feedback.resx">
+      <DependentUpon>201809031516278_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
