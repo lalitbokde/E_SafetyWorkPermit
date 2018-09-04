@@ -24,7 +24,7 @@ namespace E_SafetyWorkPermit.Models
         [Key]
         public long DepartmentId { get; set; }
         public string Name { get; set; }
-        public string Department { get; set; }
+        public long DepartmentMasterId { get; set; }
         public string TokenNo { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }

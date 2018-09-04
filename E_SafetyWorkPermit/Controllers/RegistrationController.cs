@@ -15,16 +15,108 @@ namespace E_SafetyWorkPermit.Controllers
         {
             return View();
         }
-        public ActionResult RegisterDepartment()
+        public ActionResult AddDepartmentMaster()
         {
-           
             return View();
         }
         [HttpPost]
-        public ActionResult RegisterDepartment(DepartmentRegistrationViewModel _model)
+        public ActionResult AddDepartmentMaster(DepartmentMasterViewModel _DepMaster)
         {
+            if (!ModelState.IsValid)
+            {
+                TempData["msg"] = "Fill Detail Properly";
+                TempData["success"] = "0";
+            }
+            else
+            {
+                try
+                {
+                    Db.DepartmentsMasters.Add(new DepartmentMaster()
+                    {
+                        DepartmentName = _DepMaster.DepartmentName,
+                        DepartmentCode = _DepMaster.DepartmentCode,
+                        CreatedDate = _DepMaster.CreatedDate,
+                        UpdatedDate = _DepMaster.UpdatedDate
+                    });
+                    Db.SaveChanges();
+                    ModelState.Clear();
+                    TempData["msg"] = "Success";
+                    TempData["success"] = "1";
+                    GetAllDepartment();
+                    return View(new DepartmentMasterViewModel());
+                }
+                catch
+                {
+                    TempData["msg"] = "Department Is Not Inserted";
+                    TempData["success"] = "0";
+                }
 
+            }
+            return View(_DepMaster);
+        }
+        public ActionResult RegisterDepartment()
+        {
+           
+            GetAllDepartment();
             return View();
+        }
+        public void GetAllDepartment()
+        {
+            List<DepartmentMasterViewModel> dept = new List<DepartmentMasterViewModel>();
+            var query = Db.DepartmentsMasters.ToList();
+            if (query.Count() > 0)
+            {
+                foreach (var v in query)
+                {
+                    dept.Add(new DepartmentMasterViewModel { DepartmentName = v.DepartmentName, DepartmentMasterId = v.DepartmentMasterId });
+                }
+            }
+            var enumData = from Role e in System.Enum.GetValues(typeof(Role))
+                           select new
+                           {
+                               ID = (int)e,
+                               Name = e.ToString()
+                           };
+            ViewBag.DepartmentEnumList = new SelectList(enumData, "ID", "Name");
+            ViewBag.DepartmentsData = dept;
+        }
+        [HttpPost]
+        public ActionResult RegisterDepartmentDetail(DepartmentRegistrationViewModel DepartmentReg)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["msg"] = "Fill Detail Properly";
+                TempData["success"] = "0";
+            }
+            else
+            {
+                try
+                {
+                    Db.DepartmentRegister.Add(new DepartmentRegistration()
+                    {
+                        Name = DepartmentReg.Name,
+                        DepartmentMasterId = DepartmentReg.DepartmentMasterId,
+                        TokenNo = DepartmentReg.TokenNo,
+                        Password = DepartmentReg.Password,
+                        Role =DepartmentReg.Role,
+                        CreatedDate = DepartmentReg.CreatedDate
+                    });
+                    Db.SaveChanges();
+                    ModelState.Clear();
+                    TempData["msg"] = "Success";
+                    TempData["success"] = "1";
+                    GetAllDepartment();
+                    return View(new DepartmentRegistrationViewModel());
+                }
+                catch
+                {
+                    TempData["msg"] = "Department Detail Is Not Inserted";
+                    TempData["success"] = "0";
+                }
+             
+            }
+            GetAllDepartment();
+            return View(DepartmentReg); 
         }
         public JsonResult GetallDepartment()
         {

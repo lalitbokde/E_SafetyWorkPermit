@@ -3,9 +3,29 @@
 @{
     ViewBag.Title = "RegisterDepartment";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
+
+    ViewBag.Title = "Register Department";
+    if (TempData["success"] != null)
+    {
+        if (TempData["success"].ToString() == "1")
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["msg"]
+            </div>
+        }
+        else if (TempData["success"].ToString() == "0")
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["msg"]
+            </div>
+        }
+    }
+    TempData["success"] = null;
+    TempData["msg"] = null;
+
 }
 
-<h2>RegisterDepartment</h2>
+<h2>Register Department</h2>
 
 @using (Html.BeginForm())
 {
@@ -31,10 +51,10 @@
 
                         <div class="col-md-12 form-group">
                             <div class="col-md-2">
-                                @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.Label("Department", htmlAttributes: new { @class = "control-label col-md-2" })
                             </div>
                             <div class="col-md-4">
-                                @Html.DropDownListFor(model => model.DepartmentList, new SelectList(((List<SelectListItem>)Session["DepartmentId"] != null) ? (List<SelectListItem>)Session["DepartmentId"] : new List<SelectListItem>(), "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.DepartmentMasterId, new SelectList(ViewBag.DepartmentsData as System.Collections.IEnumerable, "DepartmentMasterId", "DepartmentName"), "Select Department", new { style = "width: 400px;height:35px", id = "departmentList" })
                                 @Html.ValidationMessageFor(model => model.DepartmentList, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -64,7 +84,8 @@
                                 @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
                             </div>
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownList("DropDown", ViewBag.DepartmentEnumList as SelectList, new { style = "width: 400px;height:35px", id = "RoleId" })
+
                                 @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -108,7 +129,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                <input type="submit" id="btnSubmit" value="Create"style="border-top-color:red;border-bottom-color:red" onclick="Senddata()" class="btn btn-default" />
                             </div>
                         </div>
                     </div>
@@ -128,6 +149,63 @@
 
 <script src="~/scripts/bootstrap-datetimepicker.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+    function Senddata() {
+        debugger
+        var DepartmentReg = {
+            name: $("#Name").val(),
+            DepartmentMasterId: $("#departmentList").val(),
+            Password: $("#Password").val(),
+            Role: $("#RoleId").val(),
+            CreatedDate: $("#CreatedDate").val(),
+            UpdatedDate: $("#UpdatedDate").val()
+        };
+        var DepDataVal = JSON.stringify(DepartmentReg);
+        $.ajax({
+
+            type: "POST",
+            url: "/Registration/RegisterDepartmentDetail",
+            data: DepDataVal,
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
+        //$(document).ready(function () {
+
+        //    $(function () {
+        //        $('#btnSubmit').click(function (event) {
+        //            debugger
+        //            event.preventDefault();
+        //            var DepartmentReg = {
+        //                name: $("#Name").val(),
+        //                DepartmentMsterId: $("#departmentList").val(),
+        //                Password: $("#Password").val(),
+        //                Role: $("#RoleId").val(),
+        //                CreatedDate: $("#CreatedDate").val(),
+        //                UpdatedDate: $("#UpdatedDate").val()
+        //            };
+        //            var DepDataVal = JSON.stringify(DepartmentReg);
+        //            $.ajax({
+
+        //                type: "POST",
+        //                url: "/Registration/RegisterDepartmentDetail",
+        //                data: DepDataVal,
+        //                dataType: "json",
+        //                contentType: 'application/json; charset=utf-8',
+        //                success: function (data) {
+        //                    alert(data.msg);
+        //                },
+        //                error: function () {
+        //                    alert("Error occured!!")
+        //                }
+        //            });
+        //        });
+        //    });
+        //});
+    
+</script>
 <script>
     $.noConflict();
     jQuery(document).ready(function ($) {
@@ -159,5 +237,13 @@
     $('#UpdatedDate').datepicker({
         format: 'dd/MM/yyyy'
     });
+
+</script>
+<script type="text/javascript">
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 4000);
 
 </script>
