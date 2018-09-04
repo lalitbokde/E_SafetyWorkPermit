@@ -7,13 +7,13 @@ namespace E_SafetyWorkPermit.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class VendorRegistration : IMigrationMetadata
+    public sealed partial class DepartmentMasters : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(VendorRegistration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DepartmentMasters));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809030723139_VendorRegistration"; }
+            get { return "201809040642180_DepartmentMasters"; }
         }
         
         string IMigrationMetadata.Source

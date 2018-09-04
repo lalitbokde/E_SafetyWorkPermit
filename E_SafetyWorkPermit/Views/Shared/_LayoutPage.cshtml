@@ -343,8 +343,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Add Department</a></li>
-                            <li><a href="@Url.Action("RegisterDepartment", "Registration")"<i class="fa fa-circle-o"></i> Register Department</a></li>
+                            <li class="active"><a href="@Url.Action("AddDepartmentMaster", "Registration")"><i class="fa fa-circle-o"></i> Add Department</a></li>
+                            <li><a href="@Url.Action("RegisterDepartment", "Registration")"><i class="fa fa-circle-o"></i> Register Department</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -690,7 +690,14 @@
     $('#UpdatedDate').datepicker({
         format: 'dd/mm/yyyy'
     });
-
+    
+    $('#DM_CreatedDate').datepicker({
+        format: 'dd/mm/yyyy'
+    });
+     $('#DM_UpdatedDate').datepicker({
+        format: 'dd/mm/yyyy'
+    });
+    
 </script>
 <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="~/scripts/moment-with-locales.min.js"></script>

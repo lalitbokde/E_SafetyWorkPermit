@@ -51,7 +51,53 @@ namespace E_SafetyWorkPermit.Controllers
                 }
                 return Json(VendorResponse);
             }
+        [HttpPost]
+        public JsonResult<VendorLoginResponseModel>VendorLogin(VendorLoginRequestModel _Model)
+        {
+           
+            if (!ModelState.IsValid)
+            {
+                return null;
+            }
+            else
+            {
+                var user = db.VendorRegister.Where(a => a.UserName == _Model.UserName && a.Password == _Model.Password).FirstOrDefault();
+                if (user!=null)
+                {
+                    VendorLoginResponseModel _Login=new VendorLoginResponseModel();
+                    _Login.VendorId = user.VendorId;
+                    _Login.UserName = user.UserName;
+                    _Login.Password = user.Password;
+                    _Login.Status = user.Status;
+                    return Json(_Login);
+                }
+            }
+            return null;
         }
+
+        [HttpPost]
+        public JsonResult<DepartmentLoginResponseModel> DepartmentLogin(DepartmentLoginRequestModel _Model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return null;
+            }
+            else
+            {
+                var user = db.DepartmentRegister.Where(a => a.TokenNo == _Model.TokenNo && a.Password == _Model.Password).FirstOrDefault();
+                if (user != null)
+                {
+                    DepartmentLoginResponseModel _Login = new DepartmentLoginResponseModel();
+                    _Login.DepartmentId = user.DepartmentId;
+                    _Login.TokenNo = user.TokenNo;
+                    _Login.Password = user.Password;
+                    return Json(_Login);
+                }
+            }
+            return null;
+        }
+    }
 
     }
 

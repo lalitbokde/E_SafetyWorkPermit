@@ -6809,6 +6809,7 @@
     <Content Include="Web.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Registration\RegisterDepartment.cshtml" />
+    <Content Include="Views\Registration\AddDepartmentMaster.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -6838,20 +6839,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Migrations\201809030723139_VendorRegistration.cs" />
-    <Compile Include="Migrations\201809030723139_VendorRegistration.Designer.cs">
-      <DependentUpon>201809030723139_VendorRegistration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809030748352_DepartmentsMasters.cs" />
-    <Compile Include="Migrations\201809030748352_DepartmentsMasters.Designer.cs">
-      <DependentUpon>201809030748352_DepartmentsMasters.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809031516278_Feedback.cs" />
-    <Compile Include="Migrations\201809031516278_Feedback.Designer.cs">
-      <DependentUpon>201809031516278_Feedback.cs</DependentUpon>
+    <Compile Include="Migrations\201809040642180_DepartmentMasters.cs" />
+    <Compile Include="Migrations\201809040642180_DepartmentMasters.Designer.cs">
+      <DependentUpon>201809040642180_DepartmentMasters.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountResponseModel.cs" />
+    <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\UserRegisterModel.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -7612,14 +7606,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809030723139_VendorRegistration.resx">
-      <DependentUpon>201809030723139_VendorRegistration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809030748352_DepartmentsMasters.resx">
-      <DependentUpon>201809030748352_DepartmentsMasters.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809031516278_Feedback.resx">
-      <DependentUpon>201809031516278_Feedback.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809040642180_DepartmentMasters.resx">
+      <DependentUpon>201809040642180_DepartmentMasters.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
