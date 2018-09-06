@@ -16,88 +16,111 @@ namespace E_SafetyWorkPermit.Controllers
     {
         DatabaseContext db = new DatabaseContext();
         [HttpPost]
-        public JsonResult<VendorRegistrationResponseModel> PostVendorRegistration(VendorRegistrationRequestModel _Model)
+        public async Task<ResponseResultModel> PostVendorRegistration(VendorRegistrationRequestModel _Model)
         {
-            VendorRegistrationResponseModel VendorResponse = new VendorRegistrationResponseModel();
-            if (!ModelState.IsValid)
+            try
             {
-                return null;
+                VendorRegistrationResponseModel VendorResponse = null;
+                if (!ModelState.IsValid)
+                {
+                    return new ResponseResultModel { Message = "Invalid Detail", Status = 0, Response = null };
+                }
+                else
+                {
+                    var CountVendor = db.VendorRegister.Where(a => a.UserName == _Model.UserName).ToList();
+                    if (CountVendor.Count > 0)
+                    {
+                        return new ResponseResultModel { Message = "UserName Already Available", Status = 0, Response = null };
+                    }
+                    else
+                    {
+                        var VendorDetail = db.VendorRegister.Add(new VendorRegistration()
+                        {
+
+                            FullName = _Model.FullName,
+                            Name = _Model.Name,
+                            UserName = _Model.UserName,
+                            Password = _Model.Password,
+                            CreatedDate = _Model.CreatedDate,
+                            UpdatedDate = _Model.UpdatedDate,
+                            Status = _Model.Status
+
+                        });
+                        db.SaveChanges();
+
+
+                        return new ResponseResultModel { Message = "Success", Status = 1, Response = VendorDetail };
+                    }
+                }
             }
-            else
+            catch
             {
-               
-                
-                    var VendorDetail = db.VendorRegister.Add(new VendorRegistration()
+                return new ResponseResultModel { Message = "Invalid Detail", Status = 0, Response = null };
+            }
+            
+        }
+        [HttpPost]
+        public async Task<ResponseResultModel> VendorLogin(VendorLoginRequestModel _Model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return null;
+                }
+                else
+                {
+                    var user = db.VendorRegister.Where(a => a.UserName == _Model.UserName && a.Password == _Model.Password).FirstOrDefault();
+                    VendorLoginResponseModel _Login = new VendorLoginResponseModel();
+                    if (user != null)
                     {
 
-                        FullName = _Model.FullName,
-                        Name = _Model.Name,
-                        UserName = _Model.UserName,
-                        Password = _Model.Password,
-                        CreatedDate = _Model.CreatedDate,
-                        UpdatedDate = _Model.UpdatedDate,
-                        Status = _Model.Status
-
-                    });
-                   db.SaveChanges();
-                VendorResponse.VendorId = VendorDetail.VendorId;
-                VendorResponse.FullName = VendorDetail.FullName;
-                VendorResponse.Name = VendorDetail.Name;
-                VendorResponse.UserName = VendorDetail.UserName;
-                VendorResponse.Password = VendorDetail.Password;
-                VendorResponse.CreatedDate = VendorDetail.CreatedDate;
-                VendorResponse.UpdatedDate = VendorDetail.UpdatedDate;
-                VendorResponse.Status = Convert.ToInt32(VendorDetail.Status);
+                        _Login.VendorId = user.VendorId;
+                        _Login.UserName = user.UserName;
+                        _Login.Password = user.Password;
+                        _Login.Status = user.Status;
+                        return new ResponseResultModel { Message = "Successfull.", Status = 1, Response = _Login };
+                    }
                 }
-                return Json(VendorResponse);
+                return new ResponseResultModel { Message = "invalid username or password.", Status = 0, Response = null };
             }
-        [HttpPost]
-        public JsonResult<VendorLoginResponseModel>VendorLogin(VendorLoginRequestModel _Model)
-        {
-           
-            if (!ModelState.IsValid)
+            catch
             {
-                return null;
+                return new ResponseResultModel { Message = "invalid username or password.", Status = 0, Response = null };
             }
-            else
-            {
-                var user = db.VendorRegister.Where(a => a.UserName == _Model.UserName && a.Password == _Model.Password).FirstOrDefault();
-                if (user!=null)
-                {
-                    VendorLoginResponseModel _Login=new VendorLoginResponseModel();
-                    _Login.VendorId = user.VendorId;
-                    _Login.UserName = user.UserName;
-                    _Login.Password = user.Password;
-                    _Login.Status = user.Status;
-                    return Json(_Login);
-                }
-            }
-            return null;
         }
 
         [HttpPost]
-        public JsonResult<DepartmentLoginResponseModel> DepartmentLogin(DepartmentLoginRequestModel _Model)
+        public async Task<ResponseResultModel> DepartmentLogin(DepartmentLoginRequestModel _Model)
         {
-
-            if (!ModelState.IsValid)
-            {
-                return null;
-            }
-            else
-            {
-                var user = db.DepartmentRegister.Where(a => a.TokenNo == _Model.TokenNo && a.Password == _Model.Password).FirstOrDefault();
-                if (user != null)
+            try {
+                DepartmentLoginResponseModel _Login = null;
+                if (!ModelState.IsValid)
                 {
-                    DepartmentLoginResponseModel _Login = new DepartmentLoginResponseModel();
-                    _Login.DepartmentId = user.DepartmentId;
-                    _Login.TokenNo = user.TokenNo;
-                    _Login.Password = user.Password;
-                    return Json(_Login);
+                    return null;
                 }
+                else
+                {
+                    var user = db.DepartmentRegister.Where(a => a.TokenNo == _Model.TokenNo && a.Password == _Model.Password).FirstOrDefault();
+                    var Login = new DepartmentLoginResponseModel();
+                    if (user != null)
+                    {
+
+                        Login.DepartmentId = user.DepartmentId;
+                        Login.TokenNo = user.TokenNo;
+                        Login.Password = user.Password;
+                        return new ResponseResultModel { Message = "Successfull", Status = 1, Response = _Login };
+                    }
+                }
+                return new ResponseResultModel { Message = "invalid username or password.", Status = 0, Response = null };
             }
-            return null;
-        }
-    }
+            catch
+            {
+                return new ResponseResultModel { Message = "invalid username or password.", Status = 0, Response = null };
+            }
+           }
+       
+         }
 
     }
 

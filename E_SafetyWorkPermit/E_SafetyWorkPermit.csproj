@@ -6810,6 +6810,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Registration\RegisterDepartment.cshtml" />
     <Content Include="Views\Registration\AddDepartmentMaster.cshtml" />
+    <Content Include="Views\Registration\UpdateDepartment.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -6835,6 +6836,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\UpdateDepartmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7596,6 +7598,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Department\" />
+    <Folder Include="Views\UpdateDepartment\" />
     <Folder Include="Views\Vendor\" />
   </ItemGroup>
   <ItemGroup>

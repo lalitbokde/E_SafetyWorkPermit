@@ -1,0 +1,58 @@
+﻿@model IEnumerable<E_SafetyWorkPermit.Models.DepartmentMasterViewModel>
+
+@{
+    ViewBag.Title = "UpdateDepartment";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>UpdateDepartment</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="box box-default">
+    <div class="box-body">
+        <table class="table">
+            <tr>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartmentName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartmentCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedDate)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateDepartmentDetail", new { id = item.DepartmentMasterId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentMasterId })
+                </td>
+            </tr>
+            }
+
+        </table>
+        </div>
+    </div>

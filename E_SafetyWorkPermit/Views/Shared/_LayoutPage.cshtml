@@ -86,7 +86,7 @@
                                                     <img src="~/Content/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                                                 </div>
                                                 <h4>
-                                                    AdminLTE Design Team
+                                                   Mahindra Rise
                                                     <small><i class="fa fa-clock-o"></i> 2 hours</small>
                                                 </h4>
                                                 <p>Why not buy a new awesome theme?</p>
@@ -350,14 +350,14 @@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-files-o"></i>
-                            <span>Layout Options</span>
+                            <span>Reports</span>
                             <span class="pull-right-container">
-                                <span class="label label-primary pull-right">4</span>
+                                <span class="label label-primary pull-right">2</span>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                            <li><a href="@Url.Action("UpdateDepartment", "Registration")"><i class="fa fa-circle-o"></i>Department Master Report</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Department Register List</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i> Fixed</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
                         </ul>
@@ -687,16 +687,10 @@
         format: 'dd/mm/yyyy'
     });
 
-    $('#UpdatedDate').datepicker({
-        format: 'dd/mm/yyyy'
-    });
-    
     $('#DM_CreatedDate').datepicker({
         format: 'dd/mm/yyyy'
     });
-     $('#DM_UpdatedDate').datepicker({
-        format: 'dd/mm/yyyy'
-    });
+   
     
 </script>
 <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>

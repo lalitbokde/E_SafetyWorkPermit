@@ -97,8 +97,8 @@ namespace E_SafetyWorkPermit.Models
     }
     public class DepartmentMasterViewModel
     {
-        [Key]
-        public long DepartmentMasterId { get; set; }
+ 
+        public long? DepartmentMasterId { get; set; }
         [Required]
         public string DepartmentName { get; set; }
         [Required]
@@ -114,5 +114,11 @@ namespace E_SafetyWorkPermit.Models
         public string DepartmentCode { get; set; }
         public string CreatedDate { get; set; }
         public string UpdatedDate { get; set; }
+    }
+    public class ResponseResultModel
+    {
+        public int Status { get; set; }
+        public string Message { get; set; }
+        public object Response { get; set; }
     }
 }
